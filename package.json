@@ -1,0 +1,14 @@
+{
+  "name": "jamelao_bot",
+  "version": "1.0.0",
+  "description": "bot do jamelao",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "bastian",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.3.2"
+  }
+}
