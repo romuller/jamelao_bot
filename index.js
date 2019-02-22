@@ -9,6 +9,8 @@ go_client.on('ready', () => {
 	console.log('entrei nessa porra');
 });
 
+const command_list = ['comer', 'idai', 'merda' ];
+
 go_client.on('message', message => {
 
 	if ( !message.content.startsWith(prefix) || message.author.bot ) 
@@ -48,6 +50,12 @@ go_client.on('message', message => {
 					}
 				}
 			});
+	}
+
+	else if (lc_cmd === 'help'){
+		for (const command of command_list) {
+			message.channel.send(command);
+		}
 	}
 
 	else{
