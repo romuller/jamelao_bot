@@ -1,29 +1,29 @@
 const commands = require('./commands.json');
 const { prefix, token } = require('./config.json');
-const go_discord = require('discord.js');
-const go_client = new go_discord.Client();
+const Discord = require('discord.js');
+const client = new Discord.Client();
 
-go_client.login( token );
+client.login( token );
 
-go_client.on('ready', () => {
+client.on('ready', () => {
 	console.log('entrei nessa porra');
 });
 
 const command_list = ['comer', 'idai', 'merda' ];
 
-go_client.on('message', message => {
+client.on('message', message => {
 
 	if ( !message.content.startsWith(prefix) || message.author.bot ) 
 		return;
 
-	const lc_args = message.content.slice(prefix.length).split(/ +/);
-	const lc_cmd  = lc_args.shift().toLowerCase();
+	const splitCommand = message.content.slice(prefix.length).split(/ +/);
+	const command  = splitCommand.shift().toLowerCase();
 	
-	if ( lc_cmd === 'merda' ){
+	if ( command === 'merda' ){
 		return message.channel.send('Tu que é um merda, rapá');
 	}
 
-	else if ( lc_cmd === 'comer' ) {
+	else if ( command === 'comer' ) {
 		if ( !message.mentions.users.size && !message.mentions.everyone ) {
 			return message.reply('precisa especificar né...');
 		}
@@ -42,7 +42,7 @@ go_client.on('message', message => {
 		}
 	}
 
-	else if ( lc_cmd === 'idai' ){
+	else if ( command === 'idai' ){
 		message.channel.send({
 				embed: {
 					thumbnail: {
@@ -52,10 +52,12 @@ go_client.on('message', message => {
 			});
 	}
 
-	else if (lc_cmd === 'help'){
+	else if (command === 'help'){
+		var content = new String;
 		for (const command of command_list) {
-			message.channel.send(command);
+			content += ("!" + command + "\n").toString();
 		}
+		return message.channel.send(content);
 	}
 
 	else{
