@@ -31,7 +31,7 @@ client.on('message', message => {
 		}
 		else if ( message.mentions.everyone ){
 			return message.channel.send(message.author + ' bateu uma pra todo mundo');
-		{
+		}
 		else {
 			return message.channel.send(message.author + ' bateu uma pro ' + message.mentions.users.first());
 		}
