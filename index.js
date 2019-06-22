@@ -22,6 +22,10 @@ client.on('message', message => {
 	if ( command === 'merda' ){
 		return message.channel.send('Tu que é um merda, rapá');
 	}
+	else if (command === 'bater'){
+		return message.channel.send(message.author + ' bateu uma pro ' + message.mentions.users.first());
+	
+	}
 
 	else if ( command === 'comer' ) {
 		if ( !message.mentions.users.size && !message.mentions.everyone ) {
