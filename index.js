@@ -9,7 +9,7 @@ client.on('ready', () => {
 	console.log('entrei nessa porra');
 });
 
-const command_list = ['comer', 'idai', 'merda' ];
+const command_list = ['comer', 'idai', 'merda', 'bater' ];
 
 client.on('message', message => {
 
@@ -24,7 +24,6 @@ client.on('message', message => {
 	}
 	else if (command === 'bater'){
 		return message.channel.send(message.author + ' bateu uma pro ' + message.mentions.users.first());
-	
 	}
 
 	else if ( command === 'comer' ) {
