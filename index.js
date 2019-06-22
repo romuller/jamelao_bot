@@ -23,7 +23,18 @@ client.on('message', message => {
 		return message.channel.send('Tu que é um merda, rapá');
 	}
 	else if (command === 'bater'){
-		return message.channel.send(message.author + ' bateu uma pro ' + message.mentions.users.first());
+		if ( !message.mentions.users.size && !message.mentions.everyone ){
+			return message.channel.send(message.author + ' enfiou a mão no cu');
+		}
+		else if (message.mentions.users.first() === message.author){
+			return message.channel.send(message.author + ' gozou no teclado');
+		}
+		else if ( message.mentions.everyone ){
+			return message.channel.send(message.author + ' bateu uma pra todo mundo');
+		{
+		else {
+			return message.channel.send(message.author + ' bateu uma pro ' + message.mentions.users.first());
+		}
 	}
 
 	else if ( command === 'comer' ) {
