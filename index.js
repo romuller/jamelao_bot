@@ -9,7 +9,7 @@ client.on('ready', () => {
 	console.log('entrei nessa porra');
 });
 
-const command_list = ['comer', 'idai', 'merda', 'bater' ];
+const commandList = ['comer', 'idai', 'merda', 'bater' ];
 
 client.on('message', message => {
 
@@ -57,7 +57,8 @@ client.on('message', message => {
 
 	else if (command === 'help'){
 		var content = new String;
-		for (const command of command_list) {
+		for (const command of commandList
+		) {
 			content += ("!" + command + "\n").toString();
 		}
 		return message.channel.send(content);
