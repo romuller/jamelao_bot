@@ -13,9 +13,12 @@ const commandList = ['comer', 'idai', 'merda', 'bater' ];
 
 client.on('message', message => {
 
-	if ( !message.content.startsWith(prefix) || message.author.bot ) 
+	if ( !message.content.startsWith(prefix) || message.author.bot ) {
 		return;
-
+	} 
+	else if ( !message.content.startsWith(prefix) && message.mentions.everyone ){
+		return message.channel.send('Marca a mãe também fdp');
+	}
 	const splitCommand = message.content.slice(prefix.length).split(/ +/);
 	const command  = splitCommand.shift().toLowerCase();
 	
