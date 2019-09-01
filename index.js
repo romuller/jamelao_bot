@@ -1,30 +1,80 @@
-const commands = require('./commands.json');
 const { prefix, token } = require('./config.json');
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const { msg } = require('./chok.json');
 
 client.login( token );
 
 client.on('ready', () => {
 	console.log('entrei nessa porra');
+	client.user.setStatus('available')
+    client.user.setPresence({
+        game: {
+            name: '!help',
+        }
+    });
 });
 
-const commandList = ['comer', 'idai', 'merda', 'bater' ];
+const commandList = ['comer', 'idai', 'bater', "ofender", "observar", "chok" ];
+
+const ofensasIndividuais = ["a sua mãe é tão grande que tem o próprio fuso horário",
+							"planta bananeira em chuva de piroca",
+							"transa de costas",
+							"chupa pinto",
+							"queima a rosca"];
+
+const ofensasColetivas = ["fez uma suruba com vossa mãe... ta em chok kk?"];
 
 client.on('message', message => {
 
 	if ( !message.content.startsWith(prefix) || message.author.bot ) {
+		if ( !message.content.startsWith(prefix) && message.mentions.everyone && !message.author.bot ){
+			return message.channel.send('Marca a mãe também fdp');
+		}
 		return;
 	} 
-	else if ( !message.content.startsWith(prefix) && message.mentions.everyone ){
-		return message.channel.send('Marca a mãe também fdp');
-	}
+
 	const splitCommand = message.content.slice(prefix.length).split(/ +/);
-	const command  = splitCommand.shift().toLowerCase();
+	const command = splitCommand.shift().toLowerCase();
 	
 	if ( command === 'merda' ){
 		return message.channel.send('Tu que é um merda, rapá');
 	}
+
+	else if(command === 'observar'){
+
+		const observado = message.mentions.users.first();
+
+		if ( !message.mentions.users.size && !message.mentions.everyone ) {
+			return message.reply('precisa especificar né...');
+		}
+
+		if(!message.mentions.users.first().presence.game){
+			return message.channel.send(observado + " não está fazendo nada");
+		}
+		else {
+			return message.channel.send(observado + "está jogando " + message.mentions.users.first().presence.game.name);
+		}
+
+	}
+
+	else if(command === 'ofender'){
+
+		if ( !message.mentions.users.size && !message.mentions.everyone ) {
+			return message.reply('precisa especificar né...');
+		}
+
+		const alvo = message.mentions.users.first();
+		
+		if (message.mentions.everyone) {
+			return message.channel.send( " O Jamelão " + ofensasColetivas[ofensaEscolhida = Math.floor(Math.random() * ofensasColetivas.length)] );
+		}
+		else{
+			return message.channel.send( alvo + " " + ofensasIndividuais[Math.floor(Math.random() * ofensasIndividuais.length)] );
+		}
+		
+	}
+
 	else if (command === 'bater'){
 		if ( !message.mentions.users.size && !message.mentions.everyone ){
 			return message.channel.send(message.author + ' enfiou a mão no cu');
@@ -71,11 +121,22 @@ client.on('message', message => {
 
 	else if (command === 'help'){
 		var content = new String;
-		for (const command of commandList
-		) {
+		for (const command of commandList) {
 			content += ("!" + command + "\n").toString();
 		}
 		return message.channel.send(content);
+	}
+
+	else if (command === 'chok'){
+
+		var content = new String;
+
+		for (const line of msg) {
+			content += ( line + "\n");
+		}
+
+		return message.channel.send(content);
+
 	}
 
 	else{
