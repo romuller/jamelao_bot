@@ -32,7 +32,7 @@ client.on('message', message => {
 			return message.channel.send('Marca a mãe também fdp');
 		}
 		return;
-	} 
+	}
 
 	const splitCommand = message.content.slice(prefix.length).split(/ +/);
 	const command = splitCommand.shift().toLowerCase();
