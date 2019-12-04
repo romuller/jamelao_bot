@@ -15,7 +15,7 @@ client.on('ready', () => {
     });
 });
 
-const commandList = ['comer', 'idai', 'bater', "ofender", "observar", "chok" ];
+const commandList = ['comer', 'idai', 'bater', "ofender", "observar", "chok", "peixe" ];
 
 const ofensasIndividuais = ["a sua mãe é tão grande que tem o próprio fuso horário",
 							"planta bananeira em chuva de piroca",
@@ -24,6 +24,42 @@ const ofensasIndividuais = ["a sua mãe é tão grande que tem o próprio fuso h
 							"queima a rosca"];
 
 const ofensasColetivas = ["fez uma suruba com vossa mãe... ta em chok kk?"];
+
+//all found here https://bast1an.imgur.com/all/#
+const peixes = [
+	'https://i.imgur.com/8q8tCpJ.png',
+	'https://i.imgur.com/t7xxQvM.png',
+	'https://i.imgur.com/G44kVY7.png',
+	'https://i.imgur.com/Mxme9dt.png',
+	'https://i.imgur.com/cZdrfpF.png',
+	'https://i.imgur.com/cyP98eU.png',
+	'https://i.imgur.com/yDWzesj.png',
+	'https://i.imgur.com/hrmfOym.png',
+	'https://i.imgur.com/2a9ivW1.png',
+	'https://i.imgur.com/CfLxk0c.png',
+	'https://i.imgur.com/0UObVR1.png',
+	'https://i.imgur.com/TkJAbwN.png',
+	'https://i.imgur.com/l3svjDw.png',
+	'https://i.imgur.com/MoDTqst.png',
+	'https://i.imgur.com/EzOFO9L.png',
+	'https://i.imgur.com/zJ7naVj.png',
+	'https://i.imgur.com/q0dtE3T.png',
+	'https://i.imgur.com/f1TWTFU.png',
+	'https://i.imgur.com/mqOeipV.png',
+	'https://i.imgur.com/zQwM1tI.png',
+	'https://i.imgur.com/dXR9WTp.png',
+	'https://i.imgur.com/eLSJ0ap.png',
+	'https://i.imgur.com/QrWqbal.png',
+	'https://i.imgur.com/YSmpeXI.png',
+	'https://i.imgur.com/Cvg38Rd.png',
+	'https://i.imgur.com/pfn0jzn.png',
+	'https://i.imgur.com/IGEj1Kj.png',
+	'https://i.imgur.com/vXXmf5m.png',
+	'https://i.imgur.com/TdfbTHH.png',
+	'https://i.imgur.com/kP5WVBY.png',
+	'https://i.imgur.com/UyBQMAc.png',
+	'https://i.imgur.com/jadIWJy.png',	
+];
 
 client.on('message', message => {
 
@@ -110,13 +146,7 @@ client.on('message', message => {
 	}
 
 	else if ( command === 'idai' ){
-		message.channel.send({
-				embed: {
-					thumbnail: {
-						url: 'https://i.pinimg.com/originals/82/42/ee/8242ee01f0193bcc49746adfeefa827d.jpg'
-					}
-				}
-			});
+		message.channel.send({files: ['https://i.pinimg.com/originals/82/42/ee/8242ee01f0193bcc49746adfeefa827d.jpg']});
 	}
 
 	else if (command === 'help'){
@@ -139,14 +169,12 @@ client.on('message', message => {
 
 	}
 
+	else if (command === 'peixe'){
+		message.channel.send({files: [peixes[Math.floor(Math.random() * peixes.length)].toString()]});
+	}
+
 	else{
-		return message.channel.send( 'como assim, não entendi' ,{
-				  embed: {
-				  	thumbnail: {
-				    	url: 'http://pm1.narvii.com/6720/c19745f0fdaeafa01ce90fddf9be489b4342e75c_00.jpg',
-				  	}
-				  }
-				});
+		message.channel.send("como assim, não entendi", {files: ['http://pm1.narvii.com/6720/c19745f0fdaeafa01ce90fddf9be489b4342e75c_00.jpg']});
 	}
 
 });
