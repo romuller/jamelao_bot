@@ -15,7 +15,7 @@ client.on('ready', () => {
     });
 });
 
-const commandList = ['comer', 'idai', 'bater', "ofender", "observar", "chok", "peixe" ];
+const commandList = ['comer', 'idai', 'bater', "ofender", "observar", "chok", "peixe", "lol" ];
 
 const ofensasIndividuais = ["a sua mãe é tão grande que tem o próprio fuso horário",
 							"planta bananeira em chuva de piroca",
@@ -171,6 +171,20 @@ client.on('message', message => {
 
 	else if (command === 'peixe'){
 		message.channel.send({files: [peixes[Math.floor(Math.random() * peixes.length)].toString()]});
+	}
+
+	else if (command === 'lol'){
+		
+		var users = message.client.users.array();
+		var content = new String("jogando lol: \n");
+		
+		for (const user of users) {
+			if (user.presence.game != null && user.presence.game.name === 'League of Legends') {
+				content += (user.username + "\n").toString();
+			}
+		}
+
+		return message.channel.send(content);
 	}
 
 	else{
